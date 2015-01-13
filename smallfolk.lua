@@ -187,7 +187,7 @@ expect_object_head['9'] = expect_object_head['0']
 expect_object_head['-'] = expect_object_head['0']
 expect_object_head['.'] = expect_object_head['0']
 
-expect_object = function(string, i, tables)
+local expect_object = function(string, i, tables)
 	local head = string:sub(i, i)
 	if expect_object_head[head] then
 		return expect_object_head[head](string, i + 1, tables)
