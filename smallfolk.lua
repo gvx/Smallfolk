@@ -92,7 +92,10 @@ local function expect_number(string, start)
 			i = i + 1
 			head = string:sub(i, i)
 		until not is_digit[head]
-	elseif not head == '0' then
+	elseif head == '0' then
+		i = i + 1
+		head = string:sub(i, i)
+	else
 		invalid(i)
 	end
 	if head == '.' then
@@ -187,7 +190,7 @@ expect_object_head['9'] = expect_object_head['0']
 expect_object_head['-'] = expect_object_head['0']
 expect_object_head['.'] = expect_object_head['0']
 
-local expect_object = function(string, i, tables)
+expect_object = function(string, i, tables)
 	local head = string:sub(i, i)
 	if expect_object_head[head] then
 		return expect_object_head[head](string, i + 1, tables)
@@ -199,7 +202,7 @@ function M.loads(string, maxsize)
 	if #string > (maxsize or 10000) then
 		error 'input too large'
 	end
-	return expect_object(string, 1, {})
+	return (expect_object(string, 1, {}))
 end
 
 return M
