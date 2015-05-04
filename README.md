@@ -11,7 +11,7 @@ You use, distribute and extend Smallfolk under the terms of the MIT license.
 Usage
 -----
 
-Ser is very simple and easy to use:
+Smallfold is very simple and easy to use:
 
 ```lua
 local smallfolk = require 'smallfolk'
