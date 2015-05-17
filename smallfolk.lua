@@ -13,7 +13,7 @@ function dump_type:string(nmemo, memo, acc)
 end
 
 function dump_type:number(nmemo, memo, acc)
-	acc[#acc + 1] = tostring(self)
+	acc[#acc + 1] = ("%.17g"):format(self)
 	return nmemo
 end
 
