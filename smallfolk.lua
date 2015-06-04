@@ -51,7 +51,11 @@ function dump_object(object, nmemo, memo, acc)
 	elseif object == nil then
 		acc[#acc + 1] = 'n'
 	elseif object ~= object then
-		acc[#acc + 1] = 'N'
+		if (''..object):sub(1,1) == '-' then
+			acc[#acc + 1] = 'N'
+		else
+			acc[#acc + 1] = 'Q'
+		end
 	elseif object == huge then
 		acc[#acc + 1] = 'I'
 	elseif object == -huge then
@@ -130,6 +134,7 @@ local expect_object_head = {
 	t = function(string, i) return true, i end,
 	f = function(string, i) return false, i end,
 	n = function(string, i) return nil, i end,
+	Q = function(string, i) return -(0/0), i end,
 	N = function(string, i) return 0/0, i end,
 	I = function(string, i) return 1/0, i end,
 	i = function(string, i) return -1/0, i end,
